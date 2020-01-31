@@ -1,0 +1,83 @@
+[
+	{
+
+		"name" : "smartphones",
+		"description" : "Téléphones intelligents neufs et Téléphones reconditionnés certifiés ",
+		"subCategories" : [
+			{
+				"name": "téléphones neufs"
+			},
+			{
+				"name": "téléphones reconditionnés"
+			},
+			{
+				"name": "iPhone"
+			},
+			{
+				"name": "téléphones pliables"
+			},
+			{
+				"name": "accessoires pour téléphones"
+			}
+		]
+	},
+	{
+		"name" : "tablettes",
+		"description" : "Tablettes tactiles neuves et reconditionnées",
+		"subCategories" : []
+	},
+	{
+
+		"name" : "laptops",
+		"description" : "Ordinateurs portables neufs et reconditionnés",
+		"subCategories" : []
+	},
+	{
+
+		"name" : "desktops",
+		"description" : "Ordinateurs de bureau",
+		"subCategories" : []
+	},
+	{
+		"name" : "accessoires",
+		"description" : "Accessoires pour téléphones, tablettes, ordinateurs",
+		"subCategories" : [
+			{
+				"name": "casques et écouteurs",
+				"description": "Casques et écouteurs avec et sans fil",
+				"subCategories": []
+			},
+			{
+				"name": "étuis",
+				"description": "",
+				"subCategories": []
+			},
+			{
+				"name": "protecteurs d'écran",
+				"description": "",
+				"subCategories": []
+			},
+			{
+				"name": "battéries et chargeurs",
+				"description": "",
+				"subCategories": []
+			},
+			{
+				"name": "câbles et connecteurs",
+				"description": "",
+				"subCategories": []
+			},
+			{
+				"name": "cartes mémoires et stockage",
+				"description": "Cartes mémoires, clés USB et autres supports de stockage",
+				"subCategories": []
+			}
+		]
+	},
+	{
+		"name": "montres et objets connectés",
+		"description": "Montres connectées, porte-clés, etc...",
+		"subCategories": []
+	}
+]
+	
