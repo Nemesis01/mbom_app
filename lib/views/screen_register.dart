@@ -107,7 +107,7 @@ class RegisterScreen extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
       shrinkWrap: true,
       children: <Widget>[
-        CustomTextField(
+        /*CustomTextField(
             controller: nameController,
             text: 'Entrer votre nom ici',
             label: 'Nom complet'),
@@ -124,7 +124,7 @@ class RegisterScreen extends StatelessWidget {
           type: TextFieldType.PASSWORD,
           text: 'Confirmer votre mot de passe',
           label: 'confirmation',
-        ),
+        ),*/
         RaisedButton(
           onPressed: () => _register(context),
           child: Text('Register'),

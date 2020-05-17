@@ -9,162 +9,54 @@ enum TextFieldType {
   SWITCHER,
 }
 
-class CustomTextField extends StatelessWidget {
-  //region Field(s)
-  final TextFieldType type;
-  final TextEditingController controller;
-  final height;
-  final String text;
-  final String label;
+class CustomTextField extends FormField<String> {
+  final FormFieldSetter<String> onSaved;
+  final FormFieldValidator<String> validator;
   final String initialValue;
-  final bool showCounter;
-  final bool isSwitched;
-  final ValueChanged<bool> onChanged;
-  final Widget background;
-  //endregion
+  final bool autovalidate;
 
-  //region Constructor(s)
+  final String label;
+  final String hintText;
+
   CustomTextField({
-    @required this.label,
-    this.type = TextFieldType.NAME,
-    this.height = 100.0,
-    this.controller,
-    this.text,
+    this.onSaved,
+    this.validator,
     this.initialValue,
-    this.showCounter = false,
-    this.isSwitched,
-    this.onChanged,
-    this.background,
-  }) : /*assert(hintText != null),*/
-        assert(label != null);
-  //endregion
-
-  //region UI
-  @override
-  Widget build(BuildContext context) {
-    final style = TextStyle(
-      fontSize: 20.0,
-      fontWeight: FontWeight.w400,
-      color: Colors.black,
-      /*fontFamily: "EncodeSansCondensed"*/
-    );
-
-    return (type == TextFieldType.SWITCHER)
-        ? Container(
-            height: height,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        TextFormField(
-                          decoration: InputDecoration.collapsed(
-                            hintText: text,
-                            hintStyle: style,
-                            hoverColor: Colors.deepPurple,
-                          ),
-                          enabled: false,
-                          style: style,
-                          textCapitalization: type == TextFieldType.NAME
-                              ? TextCapitalization.words
-                              : TextCapitalization.none,
-                          obscureText:
-                              type == TextFieldType.PASSWORD ? true : false,
-                          initialValue: initialValue,
-                        ),
-                        SizedBox(height: 8.0),
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              label.toUpperCase(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle
-                                  .copyWith(
-                                      fontSize: 14, color: Colors.black54),
-                            ),
-                            Expanded(
-                              child: Visibility(
-                                visible: showCounter,
-                                child: Text(
-                                  type == TextFieldType.NAME
-                                      ? 'controller.text.length / 32'
-                                      : '',
-                                  textAlign: TextAlign.end,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+    this.autovalidate = false,
+    this.label = "label",
+    this.hintText = "hintText",
+  }) : super(
+          onSaved: onSaved,
+          validator: validator,
+          initialValue: initialValue,
+          autovalidate: autovalidate,
+          builder: (state) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                TextField(
+                  decoration: InputDecoration.collapsed(
+                    hintText: hintText,
+                    hintStyle: TextStyle(
+                      //fontFamily: 'EncodeSansCondensed',
+                      fontSize: 20.0,
                     ),
+                    //filled: true,
+                    // fillColor: Colors.black12.withOpacity(0.01),
                   ),
-                  Switch(
-                    value: true,
-                    onChanged: onChanged,
-                    activeTrackColor: Theme.of(context).accentColor,
-                    //activeThumbImage: ImageIcon(Image),
-                  )
-                ],
-              ),
-            ),
-          )
-        : Container(
-            //height: height,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  TextFormField(
-                    decoration: InputDecoration.collapsed(
-                      hintText: text,
-                      hintStyle: style,
-                      enabled: true,
-                      hoverColor: Colors.deepPurple,
-                    ),
-                    style: style,
-                    textCapitalization: type == TextFieldType.NAME
-                        ? TextCapitalization.words
-                        : TextCapitalization.none,
-                    obscureText: type == TextFieldType.PASSWORD ? true : false,
-                    initialValue: initialValue,
-                    keyboardType: type == TextFieldType.PHONE_NUMBER
-                        ? TextInputType.phone
-                        : type == TextFieldType.E_MAIL
-                            ? TextInputType.emailAddress
-                            : TextInputType.text,
+                ),
+                Text(
+                  label.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.40,
+                    //color: Colors.deepPurple,
                   ),
-                  SizedBox(height: 0.0),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        label.toUpperCase(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle
-                            .copyWith(fontSize: 12, color: Colors.black54),
-                      ),
-                      Expanded(
-                        child: Visibility(
-                          visible: showCounter,
-                          child: Text(
-                            type == TextFieldType.NAME
-                                ? 'controller.text.length / 32'
-                                : '',
-                            textAlign: TextAlign.end,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          );
-  }
-  //endregion
+                ),
+              ],
+            );
+          },
+        );
 }
