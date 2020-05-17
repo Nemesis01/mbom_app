@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
   Widget buildBody(BuildContext context) {
     double _screenWidth = MediaQuery.of(context).size.width;
 
-    return _screenWidth > 600.0 ? landscape(context) : portrait(context);
+    return _screenWidth > 600.0 ? portrait(context) : portrait(context);
   }
 
   @override
