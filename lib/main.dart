@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mbom_app/blocs/bloc_login.dart';
 import 'package:mbom_app/blocs/bloc_account.dart';
 import 'package:mbom_app/blocs/bloc_categories.dart';
 import 'package:mbom_app/blocs/bloc_home_screen.dart';
 import 'package:mbom_app/blocs/bloc_profile.dart';
 import 'package:mbom_app/blocs/bloc_provider.dart';
+
+import 'package:mbom_app/views/screen_login.dart';
 import 'package:mbom_app/views/screen_account.dart';
 import 'package:mbom_app/views/screen_categories.dart';
 import 'package:mbom_app/views/screen_home.dart';
@@ -124,9 +127,9 @@ Route _getRoute(RouteSettings settings) {
     case '/':
       return _buildRoute(
         settings,
-        new BlocProvider<HomeScreenBloc>(
-          bloc: new HomeScreenBloc(),
-          child: new HomeScreen(),
+        new BlocProvider<LoginBloc>(
+          bloc: new LoginBloc(),
+          child: new LoginScreen(),
         ),
       );
     case '/${Strings.title_home}':
