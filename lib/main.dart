@@ -41,65 +41,65 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Quicksand',
           //typography: Typography.englishLike2018,
           textTheme: TextTheme(
-            display4: TextStyle(
+            headline1: TextStyle(
               fontSize: 96,
               fontWeight: FontWeight.w300,
               letterSpacing: -1.5,
             ),
-            display3: TextStyle(
+            headline2: TextStyle(
               fontSize: 60,
               fontWeight: FontWeight.w300,
               letterSpacing: -0.5,
             ),
-            display2: TextStyle(
+            headline3: TextStyle(
               fontSize: 48,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.0,
             ),
-            display1: TextStyle(
+            headline4: TextStyle(
               fontSize: 34,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.25,
             ),
-            headline: TextStyle(
+            headline5: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.0,
             ),
-            title: TextStyle(
+            headline6: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               letterSpacing: 0.15,
             ),
-            subhead: TextStyle(
+            subtitle1: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.15,
             ),
-            body2: TextStyle(
+             subtitle2: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.10,
+            ),
+            bodyText1: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.5,
             ),
-            body1: TextStyle(
+            bodyText2: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.25,
+            ),
+             button: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 1.25,              
             ),
             caption: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.4,
-            ),
-            button: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.75,
-            ),
-            subtitle: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.1,
             ),
             overline: TextStyle(
               fontSize: 10,
@@ -107,6 +107,10 @@ class MyApp extends StatelessWidget {
               letterSpacing: 1.5,
             ),
           ),
+          buttonTheme: ButtonThemeData(
+            textTheme: ButtonTextTheme.normal
+          ),
+          buttonBarTheme: ButtonBarThemeData(),
           iconTheme: IconThemeData(color: Colors.deepPurple),
           cursorColor: Colors.black),
       //home: HomeScreen(),
