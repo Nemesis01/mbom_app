@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           
           ),*/
         appBarTheme: AppBarTheme(
-            brightness: Brightness.light,
+            // brightness: Brightness.light,
             textTheme: Theme.of(context).textTheme),
         textTheme: TextTheme(
           headline1: TextStyle(

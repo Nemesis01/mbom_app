@@ -36,23 +36,31 @@ class CustomTextField extends FormField<String> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 TextField(
-                  decoration: InputDecoration.collapsed(
-                    hintText: hintText,
-                    hintStyle: TextStyle(
-                      //fontFamily: 'EncodeSansCondensed',
-                      fontSize: 20.0,
-                    ),
-                    //filled: true,
-                    // fillColor: Colors.black12.withOpacity(0.01),
-                  ),
+                  decoration: InputDecoration(
+                      hintText: hintText,
+                      hintStyle: TextStyle(
+                        fontSize: 20.0,
+                      ),
+                      filled: true,
+                      fillColor: Color(0xff512da8).withOpacity(0.03),
+                      focusColor: Color(0xff512da8).withOpacity(0.05),
+                      hoverColor: Color(0xff512da8).withOpacity(0.05),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: EdgeInsets.only(left: 4.0)),
                 ),
-                Text(
-                  label.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.40,
-                    //color: Colors.deepPurple,
+                Padding(
+                  padding: const EdgeInsets.only(top: 4.0, bottom: 8.0),
+                  child: Text(
+                    label.toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.40,
+                      color: Colors.deepPurple.shade800,
+                    ),
                   ),
                 ),
               ],
