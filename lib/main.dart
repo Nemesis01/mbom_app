@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mbom_app/blocs/bloc_login.dart';
+import 'package:mbom_app/blocs/bloc_sign_up.dart';
 import 'package:mbom_app/blocs/bloc_account.dart';
 import 'package:mbom_app/blocs/bloc_categories.dart';
 import 'package:mbom_app/blocs/bloc_home_screen.dart';
@@ -7,6 +9,7 @@ import 'package:mbom_app/blocs/bloc_profile.dart';
 import 'package:mbom_app/blocs/bloc_provider.dart';
 
 import 'package:mbom_app/views/screen_login.dart';
+import 'package:mbom_app/views/screen_sign_up.dart';
 import 'package:mbom_app/views/screen_account.dart';
 import 'package:mbom_app/views/screen_categories.dart';
 import 'package:mbom_app/views/screen_home.dart';
@@ -24,6 +27,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // Changing statusBar color
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarBrightness: Brightness.light,
+        statusBarColor: Colors.transparent,
+      ),
+    );
+
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -42,9 +53,6 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.deepPurple,
         canvasColor: Colors.white,
         fontFamily: 'Quicksand',
-        /* appBarTheme: AppBarTheme(
-          
-          ),*/
         appBarTheme: AppBarTheme(
             // brightness: Brightness.light,
             textTheme: Theme.of(context).textTheme),
@@ -134,6 +142,14 @@ Route _getRoute(RouteSettings settings) {
         new BlocProvider<LoginBloc>(
           bloc: new LoginBloc(),
           child: new LoginScreen(),
+        ),
+      );
+    case '/sign_up':
+      return _buildRoute(
+        settings,
+        new BlocProvider<SignUpBloc>(
+          bloc: new SignUpBloc(),
+          child: new SignUpScreen(),
         ),
       );
     case '/${Strings.title_home}':

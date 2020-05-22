@@ -11,6 +11,7 @@ class Strings {
   //  LOGIN SCREEN
   //
   //*********************************************** */
+  static const String txt_sign_in = "Sign in";
   static const String txt_hint_username = "Email goes here";
   static const String txt_hint_password = "Password goes here";
   static const String txt_agree = "By signin in, you are agreeing to our";
@@ -21,4 +22,10 @@ class Strings {
   static const String label_password = "password";
 
   static const String btn_login_text = "login";
+
+  //*************************************************
+  //  LOGIN SCREEN
+  //
+  //*********************************************** */
+  static const String txt_sign_up = "Sign up";
 }

@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
-import '../custom/custom_text_field.dart';
-import '../res/Strings.dart';
-import 'screen_base.dart';
+import 'package:mbom_app/res/Strings.dart';
+import 'package:mbom_app/custom/custom_text_field.dart';
 
-class LoginScreen extends StatefulWidget {
+import 'package:mbom_app/views/screen_base.dart';
+
+class SignUpScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
+class _SignUpScreenState extends State<SignUpScreen> implements ScreenAppBase {
   //#region Member(s)
-  GlobalKey _formKey = GlobalKey<FormState>();
+  final GlobalKey _signUpForm = GlobalKey<FormState>();
+  bool _isEnabled = false;
   //#endregion
 
-  //#region
+  //#region Lifecycle Method(s)
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,16 +26,19 @@ class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
   }
   //#endregion
 
-  //#region ScreenAppBase Interface
+  //#region UI Methods
   @override
   Widget buildAppbar(BuildContext context) {
     return AppBar(
+      leading: null,
+      automaticallyImplyLeading: false,
       title: Text(
-        Strings.txt_sign_in,
+        Strings.txt_sign_up,
         style: Theme.of(context).textTheme.headline4.copyWith(
               color: Colors.deepPurple.shade50,
             ),
       ),
+      actions: <Widget>[BackButton(color: Colors.deepPurple)],
       elevation: 0.0,
       brightness: Brightness.light,
     );
@@ -85,32 +90,34 @@ class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
           Expanded(
             flex: 3,
             child: Container(
+              height: 400.0,
               child: Form(
-                child: Column(
-                  //shrinkWrap: true,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                key: _signUpForm,
+                child: ListView(
+                  shrinkWrap: true,
+                  // mainAxisSize: MainAxisSize.min,
+                  //crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    CustomTextField(
-                      hintText: 'Votre adresse électronique ici',
-                      label: 'email',
-                    ),
-                    CustomTextField(
-                      hintText: 'Mot de passe',
-                      label: 'mot de passe',
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Material(
-                        child: InkWell(
-                          child: Text('Mot de passe oublié ?'),
-                          onTap: () {},
+                    Column(
+                      children: <Widget>[
+                        CustomTextField(
+                          hintText: 'Username',
+                          label: 'Username',
                         ),
-                      ),
+                        CustomTextField(
+                          hintText: 'Votre adresse électronique ici',
+                          label: 'email',
+                        ),
+                        CustomTextField(
+                          hintText: 'Mot de passe',
+                          label: 'mot de passe',
+                        ),
+                      ],
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 32.0),
                       child: RaisedButton(
-                        onPressed: () {},
+                        onPressed: _isEnabled == true ? () {} : null,
                         child: Text('se connecter'.toUpperCase()),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
@@ -119,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
                     ),
                     Flexible(
                       child: FlatButton(
-                          onPressed: () => _navigateToSignUp(context),
+                          onPressed: () {},
                           child: Text('Créez un compte'.toUpperCase()),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),
@@ -203,11 +210,10 @@ class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
       ),
     );
   }
-
-  //#endregion
+  //#enregion
 
   //#region UI Methods
-  void _navigateToSignUp(BuildContext context) {
+  void _navigateToSignIn(BuildContext context) {
     Navigator.of(context).pushNamed('/sign_up');
   }
 
