@@ -1,4 +1,4 @@
-package com.example.mbom_app
+package com.stephane.nton.mbom_app
 
 import android.os.Bundle
 import io.flutter.app.FlutterActivity

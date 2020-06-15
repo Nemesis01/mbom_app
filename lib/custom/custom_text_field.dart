@@ -31,31 +31,52 @@ class CustomTextField extends FormField<String> {
           initialValue: initialValue,
           autovalidate: autovalidate,
           builder: (state) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                TextField(
-                  decoration: InputDecoration.collapsed(
-                    hintText: hintText,
-                    hintStyle: TextStyle(
-                      //fontFamily: 'EncodeSansCondensed',
-                      fontSize: 20.0,
+            return Container(
+              height: 100.0,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  TextField(
+                    style: TextStyle(fontSize: 18.0),
+                    decoration: InputDecoration(
+                      hintText: hintText,
+                      hintStyle: TextStyle(fontSize: 18.0),
+                      filled: true,
+                      fillColor: Color(0xff512da8).withOpacity(0.01),
+                      focusColor: Colors.white,
+                      hoverColor: Color(0xff512da8).withOpacity(0.05),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: BorderSide.none
+                        /*BorderSide(
+                            color: Colors.deepPurple.shade50,
+                          )*/
+                        ,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.deepPurple.shade200),
+                      ),
+                      contentPadding: EdgeInsets.only(left: 8.0),
                     ),
-                    //filled: true,
-                    // fillColor: Colors.black12.withOpacity(0.01),
+                    cursorColor: Color(0xff512da8),
                   ),
-                ),
-                Text(
-                  label.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.40,
-                    //color: Colors.deepPurple,
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 8.0, top: 4.0, bottom: 8.0),
+                    child: Text(
+                      label.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 0.40,
+                        //color: Colors.deepPurple.shade800,
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           },
         );

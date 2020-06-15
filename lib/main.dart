@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mbom_app/blocs/bloc_login.dart';
+import 'package:mbom_app/blocs/bloc_sign_up.dart';
 import 'package:mbom_app/blocs/bloc_account.dart';
 import 'package:mbom_app/blocs/bloc_categories.dart';
 import 'package:mbom_app/blocs/bloc_home_screen.dart';
@@ -7,6 +9,8 @@ import 'package:mbom_app/blocs/bloc_profile.dart';
 import 'package:mbom_app/blocs/bloc_provider.dart';
 
 import 'package:mbom_app/views/screen_login.dart';
+import 'package:mbom_app/views/screen_reset_password.dart';
+import 'package:mbom_app/views/screen_sign_up.dart';
 import 'package:mbom_app/views/screen_account.dart';
 import 'package:mbom_app/views/screen_categories.dart';
 import 'package:mbom_app/views/screen_home.dart';
@@ -16,6 +20,7 @@ import 'package:mbom_app/views/screen_profile.dart';
 import 'package:mbom_app/blocs/bloc_orders.dart';
 import 'package:mbom_app/blocs/bloc_preferences.dart';
 import 'res/Strings.dart';
+import 'res/colors.dart';
 import 'views/screen_preferences.dart';
 
 void main() => runApp(MyApp());
@@ -24,6 +29,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // Changing statusBar color
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarBrightness: Brightness.light,
+        statusBarColor: Colors.transparent,
+      ),
+    );
+
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -38,16 +51,17 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.deepPurple,
-        primaryColor: Colors.white,
+        primaryColor: AppColors.primary,
         accentColor: Colors.deepPurple,
         canvasColor: Colors.white,
         fontFamily: 'Quicksand',
-        /* appBarTheme: AppBarTheme(
-          
-          ),*/
         appBarTheme: AppBarTheme(
-            brightness: Brightness.light,
-            textTheme: Theme.of(context).textTheme),
+          elevation: 0.0,
+          color: Colors.transparent,
+
+          // brightness: Brightness.light,
+          // textTheme: Theme.of(context).textTheme,
+        ),
         textTheme: TextTheme(
           headline1: TextStyle(
             fontSize: 96,
@@ -115,7 +129,12 @@ class MyApp extends StatelessWidget {
             letterSpacing: 1.5,
           ),
         ),
-        buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
+        buttonTheme: ButtonThemeData(
+          textTheme: ButtonTextTheme.primary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24.0),
+          ),
+        ),
         buttonBarTheme: ButtonBarThemeData(),
         iconTheme: IconThemeData(color: Colors.deepPurple),
         //cursorColor: Colors.black,
@@ -135,6 +154,18 @@ Route _getRoute(RouteSettings settings) {
           bloc: new LoginBloc(),
           child: new LoginScreen(),
         ),
+      );
+    case '/sign_up':
+      return _buildRoute(
+        settings,
+        new BlocProvider<SignUpBloc>(
+          bloc: new SignUpBloc(),
+          child: new SignUpScreen(),
+        ),
+      );
+    case '/${Strings.title_pass_reset}':
+      return new MaterialPageRoute(
+        builder: (BuildContext context) => PasswordResetScreen(),
       );
     case '/${Strings.title_home}':
       return _buildRoute(settings, new HomeScreen());
