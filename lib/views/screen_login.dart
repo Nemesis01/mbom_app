@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:line_awesome_icons/line_awesome_icons.dart';
+import 'package:mbom_app/custom/custom_button.dart';
+import 'package:mbom_app/custom/custom_flat_button_icon.dart';
+import 'package:mbom_app/res/colors.dart';
 
 import '../custom/custom_text_field.dart';
 import '../res/Strings.dart';
@@ -18,8 +22,10 @@ class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.white.withOpacity(0.97),
       appBar: buildAppbar(context),
       body: buildBody(context),
+      resizeToAvoidBottomInset: false,
     );
   }
   //#endregion
@@ -28,11 +34,9 @@ class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
   @override
   Widget buildAppbar(BuildContext context) {
     return AppBar(
-      title: Text(
-        Strings.txt_sign_in,
-        style: Theme.of(context).textTheme.headline4.copyWith(
-              color: Colors.deepPurple.shade50,
-            ),
+      title: Image.asset(
+        "assets/images/png/logo_h.png",
+        scale: 1.75,
       ),
       elevation: 0.0,
       brightness: Brightness.light,
@@ -54,44 +58,30 @@ class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
   @override
   Widget portrait(BuildContext context) {
     return Container(
+      height: double.maxFinite,
+      //color: Colors.green,
       padding: EdgeInsets.symmetric(horizontal: 32.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Flexible(
-            flex: 2,
+            flex: 1,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  Strings.app_name.toLowerCase(),
-                  style: Theme.of(context).textTheme.headline3.copyWith(
-                        fontSize: 40.0,
-                        color: Colors.black,
-                        letterSpacing: -2.0,
-                        height: 0.05,
-                      ),
-                ),
-                Text(
-                  'Deals',
-                  style: Theme.of(context).textTheme.headline4.copyWith(
-                        color: Color(0xff512da8),
-                        fontSize: 30.0,
-                        //letterSpacing: 6.0,
-                      ),
-                ),
-              ],
+              children: <Widget>[],
             ),
           ),
           Expanded(
-            flex: 3,
+            flex: 4,
             child: Container(
+              //color: Colors.red,
               child: Form(
                 child: Column(
-                  //shrinkWrap: true,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     CustomTextField(
-                      hintText: 'Votre adresse électronique ici',
+                      hintText: Strings.txt_hint_username,
                       label: 'email',
                     ),
                     CustomTextField(
@@ -101,9 +91,14 @@ class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
                     Align(
                       alignment: Alignment.centerRight,
                       child: Material(
+                        color: Colors.transparent,
                         child: InkWell(
-                          child: Text('Mot de passe oublié ?'),
-                          onTap: () {},
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text('Mot de passe oublié ?'),
+                          ),
+                          onTap: () => _showPasswordResetModalWindow(context),
+                          borderRadius: BorderRadius.circular(100.0),
                         ),
                       ),
                     ),
@@ -112,90 +107,63 @@ class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
                       child: RaisedButton(
                         onPressed: () {},
                         child: Text('se connecter'.toUpperCase()),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
                       ),
                     ),
-                    Flexible(
-                      child: FlatButton(
-                          onPressed: () => _navigateToSignUp(context),
-                          child: Text('Créez un compte'.toUpperCase()),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                          )),
-                    ),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Text(
-                              Strings.txt_agree,
-                              style: TextStyle(
-                                fontSize: 11.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Material(
-                                  child: InkWell(
-                                    onTap: () {
-                                      showModal(context,
-                                          Strings.txt_terms_of_service, "");
-                                    },
-                                    child: Text(
-                                      Strings.txt_terms_of_service,
-                                      style: TextStyle(
-                                          color: Color(0xff512da8),
-                                          fontSize: 11.0,
-                                          fontWeight: FontWeight.w500,
-                                          decoration: TextDecoration.underline),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  ' and ',
-                                  style: TextStyle(
-                                    fontSize: 11.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Material(
-                                  child: InkWell(
-                                    onTap: () {
-                                      showModal(
-                                        context,
-                                        Strings.txt_privacy_policy,
-                                        "",
-                                      );
-                                    },
-                                    child: Text(
-                                      Strings.txt_privacy_policy,
-                                      style: TextStyle(
-                                        color: Color(0xff512da8),
-                                        fontSize: 11.0,
-                                        fontWeight: FontWeight.w500,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Text('.')
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
                   ],
                 ),
+              ),
+            ),
+          ),
+          Flexible(
+            child: FlatButton(
+              onPressed: () => _navigateToSignUp(context),
+              child: Text('Créez un compte'.toUpperCase()),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              //color: Colors.yellow,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Expanded(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text(
+                          "OR",
+                          style: Theme.of(context).textTheme.overline,
+                        ),
+                      ),
+                    ),
+                  ),
+                  CustomButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      "assets/icons/google_g_logo_1024.png",
+                      height: 24.0,
+                    ),
+                    label: "SIGN IN WITH GOOGLE",
+                    borderColor: Colors.black54,
+                  ),
+                  CustomButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      "assets/icons/f_logo_RGB-Blue_512.png",
+                      height: 24.0,
+                    ),
+                    label: "CONTINUE WITH FACEBOOK",
+                    //color: AppColors.facebook,
+                    textColor: AppColors.facebook,
+                    borderColor: AppColors.facebook,
+                  ),
+                ],
               ),
             ),
           ),
@@ -203,12 +171,65 @@ class _LoginScreenState extends State<LoginScreen> implements ScreenAppBase {
       ),
     );
   }
+  //#endregion
 
+  //#region UI
+  Widget _passwordResetModalWindow() {
+    return Stack(
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.only(
+            left: 24.0,
+            top: 16.0,
+            right: 24.0,
+            bottom: 20.0,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(Strings.title_reset_password_modal_window,
+                  style: Theme.of(context).textTheme.headline6),
+              Padding(
+                padding: EdgeInsets.only(top: 8.0, bottom: 24.0),
+                child: Text(Strings.txt_reset_password_explanation),
+              ),
+              Form(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    CustomTextField(),
+                    RaisedButton(
+                      onPressed: () {},
+                      child: Text(Strings.btn_reset_password.toUpperCase()),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
   //#endregion
 
   //#region UI Methods
   void _navigateToSignUp(BuildContext context) {
     Navigator.of(context).pushNamed('/sign_up');
+  }
+
+  void _showPasswordResetModalWindow(BuildContext context) {
+    Navigator.of(context).pushNamed('/${Strings.title_pass_reset}');
+    /*showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+          child: _passwordResetModalWindow(),
+        );
+      },
+    );*/
   }
 
   void showModal(BuildContext context, String title, String content) {
