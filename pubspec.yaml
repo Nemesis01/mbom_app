@@ -27,18 +27,7 @@ dependencies:
   line_awesome_icons: ^1.0.4+2
   json_annotation: ^2.0.0
   rxdart: ^0.22.6
-  android_intent: ^0.3.7+2
   #local_auth: ^0.2.0
-
-  firebase_core: ^0.4.0+9
-
-  # Add the dependency for the FlutterFire plugin for Google Analytics
-  firebase_analytics: ^5.0.2
-
-  # Add the dependencies for any other Firebase products you want to use in your app
-  # For example, to use Firebase Authentication and Cloud Firestore
-  firebase_auth: ^0.14.0+5
-  #cloud_firestore: ^0.12.11
 
 dev_dependencies:
   flutter_test:
@@ -63,12 +52,7 @@ flutter:
   #  - images/a_dot_ham.jpeg
 
   assets:
-    - assets/icons/google_g_logo_1024.png
-    - assets/icons/f_logo_RGB-Blue_512.png
-    - assets/icons/f_logo_RGB-White_512.png
     - assets/images/mbom.png
-    - assets/images/png/logo_h.png
-    - assets/images/png/logo_v.png
     - assets/images/mbom_light.png
     - assets/pictures/emulator_screenshot.png
     - assets/pictures/smartphone.png

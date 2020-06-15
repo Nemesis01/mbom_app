@@ -37,7 +37,7 @@ class CustomFlatIconButton extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  //Text(text, style: Theme.of(context).textTheme.title),
+                  Text(text, style: Theme.of(context).textTheme.title),
                   Text(label,
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                           fontWeight: FontWeight.w700, color: Colors.grey)),
